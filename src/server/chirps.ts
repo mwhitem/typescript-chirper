@@ -19,12 +19,12 @@ router.get('/:id?', (req, res) => {
         res.json(GetChirp(id));
     } else {
 
-        res.send(GetChirps());
+        // res.send(GetChirps());
+        const chirps = GetChirps()
+    let chirpArr: any[] = []
+    Object.keys(chirps).map(key => chirpArr.push({id: key, name: chirps[key].name, msg: chirps[key].msg}))
+    chirpArr.pop()
     }
-    const chirps = GetChirps()
-let chirpArr: any[] = []
-Object.keys(chirps).map(key => chirpArr.push({id: key, name: chirps[key].name, msg: chirps[key].msg}))
-chirpArr.pop()
 });
 
 router.post('/', (req, res) => {
